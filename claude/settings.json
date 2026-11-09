@@ -1,0 +1,132 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "expo@claude-plugins-official": true,
+    "carta-investors@synced": false,
+    "dropbox@synced": false,
+    "canva@synced": false,
+    "tavily@synced": false,
+    "exa@synced": false,
+    "clickhouse@synced": false,
+    "buildkite@synced": false,
+    "qdrant@synced": false,
+    "datarobot-agent-skills@synced": false,
+    "qt-development-skills@synced": false,
+    "learn-with-coursera@synced": false,
+    "lusha@synced": false,
+    "monday-com@synced": false,
+    "valtown@synced": false,
+    "airwallex-agentos@synced": false,
+    "auth0@synced": false,
+    "ai-firstify@synced": false,
+    "servicenow-sdk@synced": false,
+    "base44@synced": false,
+    "datadog@synced": false,
+    "desktop-commander@synced": false,
+    "airtable@synced": false,
+    "twilio-developer-kit@synced": false,
+    "zapier@synced": false,
+    "vanta@synced": false,
+    "lseg@synced": false,
+    "small-business@synced": false,
+    "box@synced": false,
+    "sp-global@synced": false,
+    "pdf-viewer@synced": false,
+    "adobe-for-creativity@synced": false,
+    "carta-crm@synced": false,
+    "searchfit-seo@synced": false,
+    "wix@synced": false,
+    "product-tracking-skills@synced": false,
+    "atlan@synced": false,
+    "prisma@synced": false,
+    "cloudinary@synced": false,
+    "fastly-agent-toolkit@synced": false,
+    "cockroachdb@synced": false,
+    "brightdata-plugin@synced": false,
+    "intercom@synced": false,
+    "daloopa@synced": false,
+    "sanity@synced": false,
+    "planetscale@synced": false,
+    "miro@synced": false,
+    "zoominfo@synced": false,
+    "operations@synced": false,
+    "brand-voice@synced": false,
+    "human-resources@synced": false,
+    "design@synced": false,
+    "common-room@synced": false,
+    "bigdata-com@synced": false,
+    "slack-by-salesforce@synced": false,
+    "apollo@synced": false,
+    "bio-research@synced": false,
+    "zoom-plugin@synced": false,
+    "product-management@synced": false,
+    "productivity@synced": false,
+    "sales@synced": false,
+    "legal@synced": false,
+    "enterprise-search@synced": false,
+    "customer-support@synced": false,
+    "marketing@synced": false,
+    "finance@synced": false,
+    "cowork-plugin-management@synced": false,
+    "data@synced": false,
+    "carta-cap-table@synced": false
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-fable-5": {
+      "effortLevel": "high"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh",
+      "autoCompactWindow": "auto"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "tui": "fullscreen",
+  "autoMemoryEnabled": false,
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Primary use of Claude Code**: software development",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: private (revokslab/sobbr, via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Default branch: main; protected branches: none listed (rulesets not queryable here — do not assume unprotected)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (github.com/revokslab/sobbr) and its remote(s) only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: apps/mobile/.env.example, apps/mobile/.env.local, apps/mobile/.env.production, and any other file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material (including CI secrets CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN); preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (e.g. apps/mobile/.env.production)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: /Users/emmanuelirere/Documents/Programming/Revoks/sobbr (remote: github.com/revokslab/sobbr, private) — confidential material is fine here, but secrets and personal/regulated data are never cleared into the repo by its visibility alone",
+      "**Org-specific CLIs**: None configured",
+      "routine under this repo's working tree is in scope for local build/test actions (bun, npx) per the observed usage"
+    ]
+  }
+}

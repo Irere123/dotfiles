@@ -1,0 +1,12 @@
+# ~/.zprofile — symlinked from ~/dotfiles/zsh/zprofile. Runs once per login shell.
+
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Python installs from python.org (added only if present). The last one listed
+# ends up first in PATH, so `python3` is 3.10, same as before.
+for v in 3.14 3.10; do
+  py="/Library/Frameworks/Python.framework/Versions/$v/bin"
+  [[ -d "$py" ]] && PATH="$py:$PATH"
+done
+unset v py
+export PATH
