@@ -8,7 +8,24 @@ tap "redis/redis"
 tap "stripe/stripe-cli"
 # tap "supabase/tap"   # uncomment along with the supabase line below
 
-# ---- Command-line tools ------------------------------------------------------
+# ---- Everyday terminal tools (wired up in zsh/zshrc and zsh/aliases.zsh) -----
+brew "bat"                   # cat with syntax highlighting
+brew "btop"                  # system monitor
+brew "eza"                   # ls with git status and tree view
+brew "fd"                    # fast, friendly find
+brew "fzf"                   # fuzzy finder: Ctrl-R history, Ctrl-T files
+brew "git-delta"             # readable git diffs
+brew "gitleaks"              # secret scanner (this repo's pre-commit hook)
+brew "jq"                    # JSON on the command line
+brew "lazygit"               # git TUI
+brew "ripgrep"               # fast grep: rg
+brew "shellcheck"            # shell script linter
+brew "tlrc"                  # tldr <cmd>: short usage examples
+brew "tree"
+brew "wget"
+brew "zoxide"                # z <dir>: jump to folders you use often
+
+# ---- Dev tools & runtimes ----------------------------------------------------
 brew "bun"
 brew "cocoapods"
 brew "fastlane"
@@ -18,6 +35,7 @@ brew "gh"
 brew "git"
 brew "glab"                  # GitLab CLI
 brew "libimobiledevice"      # talk to iOS devices over USB
+brew "mas"                   # App Store CLI (installs the apps at the bottom)
 brew "mole"                  # Mac cleanup tool
 brew "mosquitto", restart_service: :changed   # MQTT broker
 brew "nmap"
@@ -27,6 +45,7 @@ brew "poppler"               # PDF tools (pdftotext, etc.)
 brew "postgresql@14"
 brew "postgresql@18", restart_service: :changed
 brew "qemu"
+brew "railway"
 brew "redis", restart_service: :changed
 brew "uv"                    # Python package/version manager
 brew "xcodegen"
@@ -64,6 +83,11 @@ cask "whatsapp"
 cask "wpsoffice"
 cask "zerotier-one"
 cask "zulu@17"               # Java 17 (JAVA_HOME in zshrc points here)
+
+# ---- App Store (sign in to the App Store app first) --------------------------
+mas "Xcode", id: 497799835
+mas "Apple Configurator", id: 1037126344
+mas "Developer", id: 640199958
 
 # ---- VS Code extensions ------------------------------------------------------
 vscode "anthropic.claude-code"
