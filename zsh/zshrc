@@ -1,17 +1,22 @@
-# ~/.zshrc — symlinked from ~/dotfiles/zsh/zshrc. Edit it here or there; it's the same file.
+# ~/.zshrc — symlinked from ~/dotfiles/zsh/zshrc.
 # Secrets and machine-specific settings go in ~/.zshrc.local (not in git).
+
+export DOTFILES="${${(%):-%x}:A:h:h}"   # repo root, found by following this symlink
 
 # ---- Oh My Zsh ---------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
+plugins=(git zsh-autosuggestions fast-syntax-highlighting)
 source "$ZSH/oh-my-zsh.sh"
 
-bindkey '^I' autosuggest-accept   # Tab accepts the grey autosuggestion
+# ---- History -----------------------------------------------------------------
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS   # keep only the latest copy of a repeated command
+setopt HIST_IGNORE_SPACE      # a leading space keeps a command out of history
 
+# ---- Environment -------------------------------------------------------------
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-# ---- Toolchain locations -----------------------------------------------------
 export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/Library/pnpm"
 export FLYCTL_INSTALL="$HOME/.fly"
@@ -36,13 +41,44 @@ path=(
   $ANDROID_HOME/platform-tools(N-/)
 )
 
-# ---- nvm (loaded last so its node comes first in PATH) -----------------------
+# >>> railway initialize >>>
+[[ -f "$HOME/.railway/env" ]] && source "$HOME/.railway/env"
+# <<< railway initialize <<<
+
+# ---- Node (nvm) --------------------------------------------------------------
+# nvm's usual startup adds ~0.8s to every new shell. Load it without picking a
+# version, then put the default Node (`nvm alias default`) on PATH ourselves.
 export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh" --no-use
+  () {
+    local def="" ; [[ -r "$NVM_DIR/alias/default" ]] && def=$(<"$NVM_DIR/alias/default")
+    local -a dirs=($NVM_DIR/versions/node/v${def#v}(.*|)(N/nOn))   # newest match
+    (( $#dirs )) || dirs=($NVM_DIR/versions/node/v*(N/nOn))       # else newest installed
+    (( $#dirs )) && path=($dirs[1]/bin $path)
+  }
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+fi
 
 # bun completions (only present when bun came from its own installer)
 [[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
+
+# ---- CLI tools ---------------------------------------------------------------
+if (( $+commands[fzf] )); then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+  export FZF_DEFAULT_OPTS='--height 40% --layout reverse --border'
+  # Ctrl-R: search history, Ctrl-T: insert a file, Alt-C: cd.
+  # Only with a real terminal; tools that run `zsh -i -c` would print warnings.
+  [[ -t 0 ]] && source <(fzf --zsh)
+fi
+
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"   # z <part of a path>
+
+source "$DOTFILES/zsh/aliases.zsh"
+
+bindkey '^I' autosuggest-accept   # Tab accepts the grey autosuggestion (after fzf, which also binds Tab)
 
 # ---- Local overrides & secrets (never committed) -----------------------------
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
