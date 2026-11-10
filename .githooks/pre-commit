@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Block commits that contain secrets (API keys, tokens, private keys).
+# False positive? Add the line's fingerprint to .gitleaksignore.
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null; then
+  echo "pre-commit: gitleaks not installed, skipping secret scan (brew install gitleaks)" >&2
+  exit 0
+fi
+
+gitleaks git --pre-commit --staged --redact --no-banner

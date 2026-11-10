@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Set up a Mac from this repo. Safe to run again; it skips what's already done.
 #
-#   ./install.sh          full setup (Homebrew, node, Brewfile, Oh My Zsh, config links)
+#   ./install.sh          full setup (Homebrew, Node, Brewfile, Oh My Zsh, config links)
 #   ./install.sh --link   only (re)create the config symlinks
+#   ./macos.sh            developer-friendly macOS settings (run separately)
 #
 # Existing files that would be replaced are moved to ~/.dotfiles-backup/<timestamp>/.
 
@@ -48,6 +49,9 @@ link_configs() {
     cp "$DOTFILES/claude/settings.json" "$HOME/.claude/settings.json"
     info "copied Claude Code settings.json"
   fi
+
+  # Scan this repo for secrets before every commit (see .githooks/pre-commit).
+  git -C "$DOTFILES" config core.hooksPath .githooks
 
   # Secrets live here, outside git.
   if [[ ! -e "$HOME/.zshrc.local" ]]; then
@@ -127,10 +131,11 @@ main() {
 All done. Still to do by hand:
   1. Open a new terminal window so the new shell config loads.
   2. Put your API keys in ~/.zshrc.local (e.g. DAISY_API_KEY).
-  3. Install the apps Homebrew can't: Xcode, Apple Configurator and Developer
-     (App Store), Cisco Secure Client, EShare, copybox, App Sprint ASO.
-  4. Open Android Studio once so it downloads the Android SDK.
-  5. Sign in to your apps (Chrome, Slack, Docker, Tailscale, ...).
+  3. Optional: run ~/dotfiles/macos.sh for developer-friendly macOS settings.
+  4. Install the apps Homebrew can't: Cisco Secure Client, EShare, copybox,
+     App Sprint ASO.
+  5. Open Xcode and Android Studio once to finish their setup.
+  6. Sign in to your apps (Chrome, Slack, Docker, Tailscale, ...).
 EOF
 }
 
