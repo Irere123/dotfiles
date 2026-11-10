@@ -1,1 +1,17 @@
+# Global gitignore: applies to every repo on this Mac.
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+*.swp
+*~
+.idea/
+
+# Local-only files
+.env.local
+.env.*.local
 **/.claude/settings.local.json

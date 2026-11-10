@@ -1,17 +1,73 @@
 [user]
 	email = irere2020@outlook.com
 	name = irere123
+
+[init]
+	defaultBranch = main
+
+# ---- Diffs: delta makes them readable (syntax highlighting, line numbers) ----
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true        # n / N jump between files
+	line-numbers = true
+[diff]
+	algorithm = histogram  # cleaner diffs when code moves around
+	colorMoved = default
+[merge]
+	conflictStyle = zdiff3 # conflicts also show the original code
+
+# ---- Everyday workflow ----
+[pull]
+	rebase = true          # no merge commits from `git pull`
+[push]
+	autoSetupRemote = true # first `git push` of a new branch just works
+	followTags = true
+[fetch]
+	prune = true           # forget remote branches that were deleted
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+[rerere]
+	enabled = true         # remember how you resolved a conflict
+[commit]
+	verbose = true         # show the diff while writing the message
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[column]
+	ui = auto
+[help]
+	autocorrect = prompt
+
+[alias]
+	st = status -sb
+	last = log -1 --stat
+	undo = reset --soft HEAD~1   # undo last commit, keep its changes staged
+	amend = commit --amend --no-edit
+	lg = log --graph --pretty=format:'%C(yellow)%h%C(reset) %s %C(green)(%cr)%C(reset) %C(blue)%an%C(reset)%C(auto)%d'
+	recent = branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)'
+
+# ---- Credentials ----
 [credential]
 	helper = osxkeychain
-	helper = 
+	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://repository.moh.gov.rw"]
 	provider = generic
+
+# Machine-specific overrides (e.g. a work email). Not in git. Keep this last.
+[include]
+	path = ~/.gitconfig.local
