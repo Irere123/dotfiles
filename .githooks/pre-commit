@@ -8,4 +8,5 @@ if ! command -v gitleaks >/dev/null; then
   exit 0
 fi
 
-gitleaks git --pre-commit --staged --redact --no-banner
+# Silent when clean; prints the file and line of anything it finds.
+gitleaks git --pre-commit --staged --redact --no-banner --verbose --log-level warn
