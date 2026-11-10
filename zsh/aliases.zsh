@@ -13,7 +13,6 @@ if (( $+commands[eza] )); then
   alias lt='eza --tree --level=2 --git-ignore'
 fi
 (( $+commands[bat] )) && alias cat='bat --paging=never --style=plain'
-(( $+commands[lazygit] )) && alias lg='lazygit'
 
 mkcd() { mkdir -p "$1" && cd "$1"; }
 

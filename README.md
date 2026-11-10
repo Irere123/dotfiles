@@ -38,7 +38,6 @@ a ~0.2s startup, down from ~0.9s (nvm loads without its slow auto-activation ste
 | `Ctrl-T` / `Alt-C` | fuzzy-pick a file / `cd` into a folder |
 | `z <name>` | jump to a folder you've visited (`zi` to pick) |
 | `ll`, `la`, `lt` | list with git status, all files, tree |
-| `lg` | lazygit |
 | `port 3000` / `killport 3000` | see / stop what's listening on a port |
 | `mkcd dir` | make a folder and `cd` into it |
 | `dot`, `reload` | go to this repo, restart the shell |
